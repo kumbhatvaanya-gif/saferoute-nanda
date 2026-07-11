@@ -1,6 +1,6 @@
 # SafeRoute AI
 
-## [Open SafeRoute AI](https://YOUR-RENDER-LINK.onrender.com)
+## [Open SafeRoute AI]([https://YOUR-RENDER-LINK.onrender.com](https://saferoute-travel-agent.onrender.com))
 
 > **Disaster-aware travel guidance built around the traveler, not just the hazard.**
 
