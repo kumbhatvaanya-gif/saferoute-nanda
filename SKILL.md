@@ -30,4 +30,3 @@ Personalized actions are returned
           ↓
 Traveler follows official guidance
 
-</>markdown
