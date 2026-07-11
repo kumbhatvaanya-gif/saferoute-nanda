@@ -19,7 +19,7 @@ SafeRoute AI creates personalized travel safety plans using:
 
 ## How It Works
 
-```text
+```markdown
 Traveler enters location
           ↓
 SafeRoute checks the request
@@ -29,3 +29,5 @@ Risk assessment is generated
 Personalized actions are returned
           ↓
 Traveler follows official guidance
+
+</>markdown
