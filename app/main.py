@@ -29,45 +29,48 @@ HOME_PAGE = """
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta
         name="description"
-        content="SafeRoute AI provides personalized disaster-aware travel guidance."
+        content="SafeRoute AI provides live disaster-aware travel guidance."
     >
-
     <title>SafeRoute AI</title>
 
     <style>
         :root {
-            --background: #07111f;
-            --surface: rgba(15, 31, 50, 0.82);
-            --surface-light: rgba(26, 48, 72, 0.72);
-            --border: rgba(148, 180, 209, 0.17);
-            --text: #f4f8fc;
-            --muted: #a8bbcc;
-            --green: #5ee6b8;
-            --blue: #62a9ff;
-            --yellow: #ffd46a;
-            --orange: #ff9e64;
-            --red: #ff6b7d;
+            --bg: #07111f;
+            --panel: #0d1e31;
+            --panel-dark: #081524;
+            --border: #243b55;
+            --text: #f3f7fb;
+            --muted: #a9c1da;
+            --green: #61dfbd;
+            --blue: #63adff;
+            --yellow: #ffd66b;
+            --orange: #ff9c62;
+            --red: #ff6c7f;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             margin: 0;
             min-height: 100vh;
+            color: var(--text);
+            background:
+                radial-gradient(
+                    circle at 12% 5%,
+                    rgba(69, 143, 255, 0.15),
+                    transparent 32%
+                ),
+                radial-gradient(
+                    circle at 85% 18%,
+                    rgba(97, 223, 189, 0.10),
+                    transparent 28%
+                ),
+                var(--bg);
             font-family:
                 Inter,
                 ui-sans-serif,
@@ -76,27 +79,12 @@ HOME_PAGE = """
                 BlinkMacSystemFont,
                 "Segoe UI",
                 sans-serif;
-            color: var(--text);
-            background:
-                radial-gradient(
-                    circle at 15% 10%,
-                    rgba(65, 155, 255, 0.22),
-                    transparent 30%
-                ),
-                radial-gradient(
-                    circle at 85% 30%,
-                    rgba(45, 214, 158, 0.14),
-                    transparent 28%
-                ),
-                var(--background);
         }
 
-        a {
-            color: inherit;
-        }
+        a { color: inherit; }
 
         .container {
-            width: min(1140px, calc(100% - 36px));
+            width: min(1480px, calc(100% - 30px));
             margin: 0 auto;
         }
 
@@ -105,24 +93,23 @@ HOME_PAGE = """
             top: 0;
             z-index: 20;
             border-bottom: 1px solid var(--border);
-            background: rgba(7, 17, 31, 0.83);
-            backdrop-filter: blur(18px);
+            background: rgba(7, 17, 31, 0.88);
+            backdrop-filter: blur(16px);
         }
 
         .nav-inner {
-            min-height: 70px;
+            min-height: 68px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
+            gap: 18px;
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 11px;
-            font-weight: 800;
-            letter-spacing: -0.03em;
+            gap: 10px;
+            font-weight: 850;
             text-decoration: none;
         }
 
@@ -131,29 +118,27 @@ HOME_PAGE = """
             height: 38px;
             display: grid;
             place-items: center;
-            border: 1px solid rgba(94, 230, 184, 0.35);
+            border: 1px solid rgba(97, 223, 189, 0.32);
             border-radius: 12px;
-            background: rgba(94, 230, 184, 0.1);
+            background: rgba(97, 223, 189, 0.08);
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 16px;
         }
 
         .nav-links a {
             color: var(--muted);
-            text-decoration: none;
             font-size: 14px;
+            text-decoration: none;
         }
 
-        .nav-links a:hover {
-            color: var(--text);
-        }
+        .nav-links a:hover { color: var(--text); }
 
         .hero {
-            padding: 100px 0 70px;
+            padding: 78px 0 44px;
             text-align: center;
         }
 
@@ -162,12 +147,12 @@ HOME_PAGE = """
             align-items: center;
             gap: 8px;
             padding: 8px 13px;
-            border: 1px solid rgba(94, 230, 184, 0.25);
+            border: 1px solid rgba(97, 223, 189, 0.27);
             border-radius: 999px;
             color: var(--green);
-            background: rgba(94, 230, 184, 0.07);
+            background: rgba(97, 223, 189, 0.07);
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .status-dot {
@@ -175,424 +160,396 @@ HOME_PAGE = """
             height: 8px;
             border-radius: 50%;
             background: var(--green);
-            box-shadow: 0 0 16px var(--green);
+            box-shadow: 0 0 14px var(--green);
         }
 
         h1 {
-            max-width: 880px;
-            margin: 28px auto 22px;
-            font-size: clamp(48px, 8vw, 88px);
-            line-height: 0.98;
-            letter-spacing: -0.065em;
+            max-width: 900px;
+            margin: 24px auto 18px;
+            font-size: clamp(44px, 7vw, 78px);
+            line-height: 1;
+            letter-spacing: -0.06em;
         }
 
         .gradient-text {
-            background: linear-gradient(
-                105deg,
-                #ffffff 15%,
-                #7cb8ff 50%,
-                #5ee6b8 92%
-            );
+            background: linear-gradient(105deg, #ffffff, #7cb8ff, #61dfbd);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
 
-        .hero-description {
-            max-width: 720px;
+        .hero p {
+            max-width: 760px;
             margin: 0 auto;
             color: var(--muted);
-            font-size: clamp(17px, 2vw, 21px);
-            line-height: 1.7;
+            font-size: clamp(16px, 2vw, 20px);
+            line-height: 1.65;
         }
 
         .hero-actions {
-            margin-top: 34px;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 12px;
+            margin-top: 28px;
         }
 
         .button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 9px;
-            min-height: 48px;
-            padding: 0 20px;
+            min-height: 46px;
+            padding: 0 18px;
             border: 1px solid var(--border);
-            border-radius: 12px;
-            font-weight: 750;
+            border-radius: 11px;
+            font-weight: 800;
             text-decoration: none;
-            transition:
-                transform 150ms ease,
-                border-color 150ms ease,
-                background 150ms ease;
-        }
-
-        .button:hover {
-            transform: translateY(-2px);
         }
 
         .button-primary {
             color: #06141d;
             border-color: transparent;
-            background: linear-gradient(135deg, var(--green), #78baff);
+            background: linear-gradient(135deg, var(--green), var(--blue));
         }
 
         .button-secondary {
-            color: var(--text);
-            background: rgba(255, 255, 255, 0.045);
+            background: rgba(255,255,255,0.04);
         }
 
-        section {
-            padding: 70px 0;
-        }
+        section { padding: 54px 0; }
 
         .section-heading {
-            max-width: 700px;
-            margin-bottom: 34px;
+            max-width: 760px;
+            margin-bottom: 28px;
         }
 
         .eyebrow {
-            margin: 0 0 10px;
+            margin: 0 0 8px;
             color: var(--green);
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 0.12em;
+            font-size: 12px;
+            font-weight: 850;
+            letter-spacing: 0.13em;
             text-transform: uppercase;
         }
 
         h2 {
             margin: 0;
-            font-size: clamp(32px, 5vw, 50px);
+            font-size: clamp(30px, 4vw, 48px);
             letter-spacing: -0.045em;
         }
 
         .section-heading p {
-            margin-top: 14px;
+            margin: 12px 0 0;
             color: var(--muted);
-            font-size: 17px;
-            line-height: 1.7;
+            line-height: 1.65;
         }
 
-        .grid {
+        .planner-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            grid-template-columns: 0.82fr 1fr 1.08fr;
+            gap: 16px;
+            align-items: stretch;
         }
 
-        .card {
-            padding: 23px;
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255, 255, 255, 0.055),
-                    rgba(255, 255, 255, 0.018)
-                );
-            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.14);
-        }
-
-        .card-icon {
-            width: 46px;
-            height: 46px;
-            display: grid;
-            place-items: center;
-            margin-bottom: 18px;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            background: var(--surface-light);
-            font-size: 23px;
-        }
-
-        .card h3 {
-            margin: 0 0 8px;
-            font-size: 18px;
-        }
-
-        .card p {
-            margin: 0;
-            color: var(--muted);
-            line-height: 1.6;
-            font-size: 14px;
-        }
-
-        .workflow {
-            display: grid;
-            grid-template-columns:
-                minmax(130px, 1fr)
-                auto
-                minmax(130px, 1fr)
-                auto
-                minmax(130px, 1fr)
-                auto
-                minmax(130px, 1fr);
-            align-items: center;
-            gap: 12px;
-        }
-
-        .workflow-step {
-            min-height: 150px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 20px;
-            border: 1px solid var(--border);
-            border-radius: 17px;
-            background: var(--surface);
-            text-align: center;
-        }
-
-        .step-number {
-            width: 30px;
-            height: 30px;
-            display: grid;
-            place-items: center;
-            margin: 0 auto 12px;
-            border-radius: 50%;
-            color: #07111f;
-            background: var(--green);
-            font-size: 13px;
-            font-weight: 900;
-        }
-
-        .workflow-step strong {
-            font-size: 15px;
-        }
-
-        .workflow-step span {
-            margin-top: 7px;
-            color: var(--muted);
-            font-size: 13px;
-            line-height: 1.5;
-        }
-
-        .arrow {
-            color: var(--blue);
-            font-size: 24px;
-        }
-
-        .risk-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
-        }
-
-        .risk-card {
-            padding: 20px;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            background: var(--surface);
-        }
-
-        .risk-level {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 9px;
-            font-weight: 800;
-        }
-
-        .risk-dot {
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-        }
-
-        .low {
-            background: var(--green);
-        }
-
-        .moderate {
-            background: var(--yellow);
-        }
-
-        .high {
-            background: var(--orange);
-        }
-
-        .extreme {
-            background: var(--red);
-        }
-
-        .risk-card p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 14px;
-            line-height: 1.55;
-        }
-
-        .planner {
-            display: grid;
-            grid-template-columns: 0.9fr 1.1fr;
-            gap: 18px;
-        }
-
-        form,
-        .result-panel {
-            padding: 26px;
+        .panel {
+            min-height: 620px;
+            padding: 24px;
             border: 1px solid var(--border);
             border-radius: 20px;
-            background: var(--surface);
+            background: rgba(13, 30, 49, 0.95);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.18);
         }
 
-        .form-row {
-            margin-bottom: 16px;
+        .panel-title {
+            margin: 0 0 6px;
+            font-size: 22px;
         }
+
+        .panel-description {
+            margin: 0 0 22px;
+            color: var(--muted);
+            line-height: 1.55;
+            font-size: 14px;
+        }
+
+        .form-row { margin-bottom: 16px; }
 
         label {
             display: block;
             margin-bottom: 7px;
-            color: #dce9f4;
             font-size: 13px;
-            font-weight: 750;
+            font-weight: 800;
         }
 
         input,
         select {
             width: 100%;
-            min-height: 45px;
+            min-height: 46px;
             padding: 0 13px;
             border: 1px solid var(--border);
             border-radius: 11px;
             outline: none;
             color: var(--text);
-            background: rgba(4, 13, 23, 0.72);
+            background: var(--panel-dark);
             font: inherit;
         }
 
         input:focus,
-        select:focus {
-            border-color: var(--blue);
-        }
+        select:focus { border-color: var(--blue); }
 
-        select option {
-            color: #111827;
-        }
+        select option { color: #111827; }
 
         button {
             width: 100%;
             min-height: 48px;
             border: 0;
             border-radius: 12px;
-            color: #06141d;
+            color: #07111f;
             background: linear-gradient(135deg, var(--green), var(--blue));
             font: inherit;
-            font-weight: 850;
+            font-weight: 900;
             cursor: pointer;
         }
 
         button:disabled {
-            opacity: 0.6;
+            opacity: 0.65;
             cursor: wait;
         }
 
-        .result-panel {
-            min-height: 100%;
+        .notice {
+            margin-top: 16px;
+            padding: 13px;
+            border: 1px solid rgba(255, 214, 107, 0.23);
+            border-radius: 11px;
+            color: #f6dd99;
+            background: rgba(255, 214, 107, 0.06);
+            font-size: 12px;
+            line-height: 1.5;
         }
 
-        .result-placeholder {
-            min-height: 330px;
+        .empty-state {
+            min-height: 465px;
             display: grid;
             place-items: center;
-            padding: 30px;
+            padding: 28px;
             border: 1px dashed var(--border);
             border-radius: 14px;
             color: var(--muted);
             text-align: center;
         }
 
-        .result-content {
-            display: none;
-        }
+        .hidden { display: none; }
 
-        .result-risk {
+        .live-badge,
+        .risk-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 14px;
             padding: 7px 11px;
             border: 1px solid var(--border);
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.04);
-            font-size: 13px;
-            font-weight: 800;
+            background: rgba(255,255,255,0.04);
+            font-size: 12px;
+            font-weight: 850;
         }
 
-        .action-list {
-            padding-left: 19px;
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 13px var(--green);
+        }
+
+        .location-name {
+            margin: 16px 0 4px;
+            font-size: 20px;
+        }
+
+        .generated-time {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .weather-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 9px;
+            margin-top: 17px;
+        }
+
+        .weather-card {
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            background: var(--panel-dark);
+        }
+
+        .weather-value {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .weather-label {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .hazard-list {
+            display: grid;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .hazard-card {
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            background: var(--panel-dark);
+        }
+
+        .hazard-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 7px;
+        }
+
+        .hazard-title {
+            font-weight: 850;
+            line-height: 1.35;
+        }
+
+        .hazard-distance {
+            flex-shrink: 0;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .hazard-category {
+            display: inline-block;
+            margin-bottom: 7px;
+            padding: 4px 7px;
+            border-radius: 6px;
+            color: var(--blue);
+            background: rgba(99, 173, 255, 0.09);
+            font-size: 10px;
+            font-weight: 850;
+            text-transform: uppercase;
+        }
+
+        .hazard-details {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .hazard-source {
+            display: block;
+            margin-top: 8px;
+            color: #7894ae;
+            font-size: 10px;
+        }
+
+        .no-hazard {
+            margin-top: 16px;
+            padding: 17px;
+            border: 1px solid rgba(97, 223, 189, 0.32);
+            border-radius: 13px;
+            background: rgba(97, 223, 189, 0.07);
+        }
+
+        .no-hazard strong { color: var(--green); }
+
+        .no-hazard p {
+            margin: 7px 0 0;
+            color: var(--muted);
+            line-height: 1.5;
+            font-size: 13px;
+        }
+
+        .source-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 16px;
+        }
+
+        .source-pill {
+            padding: 5px 8px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .decision {
+            margin: 17px 0 10px;
+            font-size: 24px;
+            text-transform: capitalize;
+        }
+
+        .summary {
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .actions {
+            padding-left: 20px;
             color: var(--muted);
         }
 
-        .action-list li {
+        .actions li {
             margin-bottom: 9px;
             line-height: 1.5;
         }
 
-        .prototype-note {
-            margin-top: 50px;
-            padding: 18px 20px;
-            border: 1px solid rgba(255, 212, 106, 0.22);
-            border-radius: 14px;
-            color: #f5d98c;
-            background: rgba(255, 212, 106, 0.07);
-            line-height: 1.6;
-        }
+        .risk-low { color: var(--green); }
+        .risk-moderate { color: var(--yellow); }
+        .risk-high { color: var(--orange); }
+        .risk-extreme { color: var(--red); }
 
         footer {
-            padding: 40px 0 55px;
+            margin-top: 22px;
+            padding: 34px 0 45px;
             border-top: 1px solid var(--border);
             color: var(--muted);
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .footer-inner {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 14px;
         }
 
-        @media (max-width: 900px) {
-            .grid,
-            .risk-grid {
-                grid-template-columns: repeat(2, 1fr);
+        @media (max-width: 1120px) {
+            .planner-grid {
+                grid-template-columns: 1fr 1fr;
             }
 
-            .workflow {
-                grid-template-columns: 1fr;
-            }
-
-            .arrow {
-                transform: rotate(90deg);
-                text-align: center;
-            }
-
-            .planner {
-                grid-template-columns: 1fr;
+            .form-panel {
+                grid-column: 1 / -1;
+                min-height: auto;
             }
         }
 
-        @media (max-width: 620px) {
-            .nav-links a:not(.button) {
-                display: none;
-            }
+        @media (max-width: 760px) {
+            .planner-grid { grid-template-columns: 1fr; }
+            .form-panel { grid-column: auto; }
+            .panel { min-height: auto; }
 
-            .hero {
-                padding-top: 72px;
-            }
+            .nav-links a:not(.button) { display: none; }
+        }
 
-            .grid,
-            .risk-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .container {
-                width: min(100% - 24px, 1140px);
-            }
+        @media (max-width: 500px) {
+            .weather-grid { grid-template-columns: 1fr; }
+            .container { width: min(100% - 20px, 1480px); }
         }
     </style>
 </head>
@@ -606,9 +563,8 @@ HOME_PAGE = """
             </a>
 
             <div class="nav-links">
-                <a href="#capabilities">Capabilities</a>
-                <a href="#workflow">Workflow</a>
-                <a href="#planner">Try it</a>
+                <a href="#planner">Live planner</a>
+                <a href="/docs">API</a>
                 <a class="button button-secondary" href="/skill-preview">
                     SkillMD
                 </a>
@@ -621,226 +577,28 @@ HOME_PAGE = """
             <div class="container">
                 <div class="badge">
                     <span class="status-dot"></span>
-                    NANDA-compatible safety service
+                    Live disaster-aware travel intelligence
                 </div>
 
                 <h1>
-                    Travel decisions built for
-                    <span class="gradient-text">changing conditions.</span>
+                    Know what is happening.
+                    <span class="gradient-text">Know what to do next.</span>
                 </h1>
 
-                <p class="hero-description">
-                    SafeRoute AI turns a traveler’s location, transport,
-                    accessibility requirements and emergency needs into a
-                    clear, personalized action plan.
+                <p>
+                    SafeRoute checks live weather, earthquakes and natural
+                    events, then creates a plan personalized to the traveler’s
+                    transport, mobility, family, pet and medical needs.
                 </p>
 
                 <div class="hero-actions">
                     <a class="button button-primary" href="#planner">
-                        Generate a safety plan
+                        Generate a live plan
                     </a>
 
                     <a class="button button-secondary" href="/skill-preview">
                         View SkillMD
                     </a>
-
-                    <a class="button button-secondary" href="/docs">
-                        API documentation
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="capabilities">
-            <div class="container">
-                <div class="section-heading">
-                    <p class="eyebrow">Hazard intelligence</p>
-                    <h2>One plan, built around the traveler.</h2>
-
-                    <p>
-                        The system combines travel context and emergency needs
-                        so an agent can provide more useful guidance than a
-                        generic alert.
-                    </p>
-                </div>
-
-                <div class="grid">
-                    <article class="card">
-                        <div class="card-icon">🌧️</div>
-                        <h3>Severe weather</h3>
-                        <p>
-                            Adapt outdoor activities, timing and transport
-                            during rain, snow and storms.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <div class="card-icon">🌊</div>
-                        <h3>Flood awareness</h3>
-                        <p>
-                            Highlight low-lying areas and advise travelers to
-                            follow verified closure information.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <div class="card-icon">🌎</div>
-                        <h3>Earthquake context</h3>
-                        <p>
-                            Help travelers avoid potentially damaged
-                            infrastructure and monitor official alerts.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <div class="card-icon">🌋</div>
-                        <h3>Volcanoes and lava</h3>
-                        <p>
-                            Direct travelers toward official exclusion zones
-                            and geological authority guidance.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <div class="card-icon">🔥</div>
-                        <h3>Wildfires</h3>
-                        <p>
-                            Prioritize relocation, official evacuation zones
-                            and reduced exposure to smoke.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <div class="card-icon">♿</div>
-                        <h3>Accessibility</h3>
-                        <p>
-                            Include step-free transport, accessible shelter
-                            and extra evacuation time.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <div class="card-icon">👨‍👩‍👧</div>
-                        <h3>Family planning</h3>
-                        <p>
-                            Create meeting-point, child, elderly-traveler and
-                            pet-specific recommendations.
-                        </p>
-                    </article>
-
-                    <article class="card">
-                        <div class="card-icon">🩺</div>
-                        <h3>Medical needs</h3>
-                        <p>
-                            Remind travelers about medication, emergency
-                            contacts and backup power.
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="workflow">
-            <div class="container">
-                <div class="section-heading">
-                    <p class="eyebrow">Decision workflow</p>
-                    <h2>From a question to an action plan.</h2>
-                </div>
-
-                <div class="workflow">
-                    <div class="workflow-step">
-                        <span class="step-number">1</span>
-                        <strong>Collect context</strong>
-                        <span>
-                            Location, transportation and accessibility needs
-                        </span>
-                    </div>
-
-                    <div class="arrow">→</div>
-
-                    <div class="workflow-step">
-                        <span class="step-number">2</span>
-                        <strong>Assess the request</strong>
-                        <span>
-                            Identify relevant traveler and emergency factors
-                        </span>
-                    </div>
-
-                    <div class="arrow">→</div>
-
-                    <div class="workflow-step">
-                        <span class="step-number">3</span>
-                        <strong>Generate actions</strong>
-                        <span>
-                            Return prioritized personalized recommendations
-                        </span>
-                    </div>
-
-                    <div class="arrow">→</div>
-
-                    <div class="workflow-step">
-                        <span class="step-number">4</span>
-                        <strong>Follow authorities</strong>
-                        <span>
-                            Official emergency instructions remain primary
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="container">
-                <div class="section-heading">
-                    <p class="eyebrow">Risk communication</p>
-                    <h2>Clear levels. Clear actions.</h2>
-                </div>
-
-                <div class="risk-grid">
-                    <div class="risk-card">
-                        <div class="risk-level">
-                            <span class="risk-dot low"></span>
-                            Low
-                        </div>
-
-                        <p>
-                            Continue with awareness and monitor official
-                            conditions.
-                        </p>
-                    </div>
-
-                    <div class="risk-card">
-                        <div class="risk-level">
-                            <span class="risk-dot moderate"></span>
-                            Moderate
-                        </div>
-
-                        <p>
-                            Modify activities, timing, transportation or route.
-                        </p>
-                    </div>
-
-                    <div class="risk-card">
-                        <div class="risk-level">
-                            <span class="risk-dot high"></span>
-                            High
-                        </div>
-
-                        <p>
-                            Delay, relocate or substantially change the trip.
-                        </p>
-                    </div>
-
-                    <div class="risk-card">
-                        <div class="risk-level">
-                            <span class="risk-dot extreme"></span>
-                            Extreme
-                        </div>
-
-                        <p>
-                            Follow official evacuation or shelter guidance.
-                        </p>
-                    </div>
                 </div>
             </div>
         </section>
@@ -848,103 +606,175 @@ HOME_PAGE = """
         <section id="planner">
             <div class="container">
                 <div class="section-heading">
-                    <p class="eyebrow">Live prototype</p>
-                    <h2>Generate a personalized plan.</h2>
-
+                    <p class="eyebrow">Live planner</p>
+                    <h2>Generate a personalized safety plan.</h2>
                     <p>
-                        Enter traveler information to test the current
-                        SafeRoute decision-support endpoint.
+                        The middle panel shows what the connected feeds detect.
+                        The right panel converts that information into actions
+                        for the specific traveler.
                     </p>
                 </div>
 
-                <div class="planner">
-                    <form id="planner-form">
-                        <div class="form-row">
-                            <label for="location">Location or destination</label>
+                <div class="planner-grid">
+                    <section class="panel form-panel">
+                        <h3 class="panel-title">Traveler details</h3>
 
-                            <input
-                                id="location"
-                                name="location"
-                                value="Naples"
-                                minlength="2"
-                                required
-                            >
+                        <p class="panel-description">
+                            Enter the destination and exact traveler needs.
+                        </p>
+
+                        <form id="planner-form">
+                            <div class="form-row">
+                                <label for="location">
+                                    Location or destination
+                                </label>
+
+                                <input
+                                    id="location"
+                                    name="location"
+                                    value="Naples, Italy"
+                                    minlength="2"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-row">
+                                <label for="mobility">
+                                    Mobility requirement
+                                </label>
+
+                                <select id="mobility" name="mobility">
+                                    <option value="standard">Standard</option>
+                                    <option value="wheelchair">Wheelchair</option>
+                                    <option value="limited mobility">
+                                        Limited mobility
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="form-row">
+                                <label for="transport">Transportation</label>
+
+                                <select id="transport" name="transport">
+                                    <option value="car">Car</option>
+                                    <option value="walking">Walking</option>
+                                    <option value="public_transport">
+                                        Public transport
+                                    </option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-row">
+                                <label for="needs">Additional needs</label>
+
+                                <input
+                                    id="needs"
+                                    name="needs"
+                                    value="children,pets"
+                                    placeholder="dog,children,medical,elderly"
+                                >
+                            </div>
+
+                            <div class="form-row">
+                                <label for="risk-radius">
+                                    Hazard search radius
+                                </label>
+
+                                <select
+                                    id="risk-radius"
+                                    name="risk_radius_km"
+                                >
+                                    <option value="100">100 km</option>
+                                    <option value="300" selected>300 km</option>
+                                    <option value="500">500 km</option>
+                                    <option value="1000">1000 km</option>
+                                </select>
+                            </div>
+
+                            <button id="submit-button" type="submit">
+                                Check live feeds
+                            </button>
+                        </form>
+
+                        <div class="notice">
+                            Uses Open-Meteo, USGS and NASA EONET. Official
+                            emergency instructions always take priority.
+                        </div>
+                    </section>
+
+                    <section class="panel">
+                        <h3 class="panel-title">What is happening?</h3>
+
+                        <p class="panel-description">
+                            Live weather, earthquakes and natural events near
+                            the selected location.
+                        </p>
+
+                        <div id="hazard-empty" class="empty-state">
+                            Generate a plan to check the live hazard feeds.
                         </div>
 
-                        <div class="form-row">
-                            <label for="mobility">Mobility requirement</label>
+                        <div id="hazard-content" class="hidden">
+                            <span class="live-badge">
+                                <span class="live-dot"></span>
+                                Live feed result
+                            </span>
 
-                            <select id="mobility" name="mobility">
-                                <option value="standard">Standard</option>
-                                <option value="wheelchair">Wheelchair</option>
-                                <option value="limited mobility">
-                                    Limited mobility
-                                </option>
-                            </select>
+                            <h3
+                                id="resolved-location"
+                                class="location-name"
+                            ></h3>
+
+                            <p
+                                id="generated-time"
+                                class="generated-time"
+                            ></p>
+
+                            <div
+                                id="weather-grid"
+                                class="weather-grid"
+                            ></div>
+
+                            <div
+                                id="hazard-list"
+                                class="hazard-list"
+                            ></div>
+
+                            <div
+                                id="source-list"
+                                class="source-list"
+                            ></div>
+                        </div>
+                    </section>
+
+                    <section class="panel">
+                        <h3 class="panel-title">Your personalized plan</h3>
+
+                        <p class="panel-description">
+                            Recommendations based on the live result and the
+                            traveler’s individual needs.
+                        </p>
+
+                        <div id="plan-empty" class="empty-state">
+                            Your customized actions will appear here.
                         </div>
 
-                        <div class="form-row">
-                            <label for="transport">Transportation</label>
+                        <div id="plan-content" class="hidden">
+                            <span
+                                id="risk-badge"
+                                class="risk-badge"
+                            ></span>
 
-                            <select id="transport" name="transport">
-                                <option value="car">Car</option>
-                                <option value="walking">Walking</option>
-                                <option value="public_transport">
-                                    Public transport
-                                </option>
-                                <option value="other">Other</option>
-                            </select>
+                            <h3 id="decision" class="decision"></h3>
+
+                            <p id="summary" class="summary"></p>
+
+                            <h3>Personalized actions</h3>
+
+                            <ul id="actions" class="actions"></ul>
                         </div>
-
-                        <div class="form-row">
-                            <label for="needs">
-                                Additional needs
-                            </label>
-
-                            <input
-                                id="needs"
-                                name="needs"
-                                placeholder="children,pets,medical,elderly"
-                                value="children,pets"
-                            >
-                        </div>
-
-                        <button id="submit-button" type="submit">
-                            Generate safety plan
-                        </button>
-                    </form>
-
-                    <div class="result-panel">
-                        <div
-                            id="result-placeholder"
-                            class="result-placeholder"
-                        >
-                            Your personalized safety plan will appear here.
-                        </div>
-
-                        <div id="result-content" class="result-content">
-                            <div id="result-risk" class="result-risk"></div>
-
-                            <h3 id="result-decision"></h3>
-
-                            <p id="result-summary"></p>
-
-                            <h4>Personalized actions</h4>
-
-                            <ul
-                                id="result-actions"
-                                class="action-list"
-                            ></ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="prototype-note">
-                    <strong>Prototype notice:</strong>
-                    the deployed version currently generates personalized
-                    guidance from traveler inputs. Live weather, earthquake,
-                    wildfire and volcanic feeds are not connected yet.
-                    Official emergency instructions always take priority.
+                    </section>
                 </div>
             </div>
         </section>
@@ -953,7 +783,6 @@ HOME_PAGE = """
     <footer>
         <div class="container footer-inner">
             <span>SafeRoute AI · NANDA Town Hackathon</span>
-
             <span>
                 Decision support only — never a replacement for authorities
             </span>
@@ -963,74 +792,291 @@ HOME_PAGE = """
     <script>
         const form = document.getElementById("planner-form");
         const submitButton = document.getElementById("submit-button");
-        const placeholder = document.getElementById("result-placeholder");
-        const resultContent = document.getElementById("result-content");
-        const resultRisk = document.getElementById("result-risk");
-        const resultDecision = document.getElementById("result-decision");
-        const resultSummary = document.getElementById("result-summary");
-        const resultActions = document.getElementById("result-actions");
+
+        const hazardEmpty = document.getElementById("hazard-empty");
+        const hazardContent = document.getElementById("hazard-content");
+        const resolvedLocation = document.getElementById("resolved-location");
+        const generatedTime = document.getElementById("generated-time");
+        const weatherGrid = document.getElementById("weather-grid");
+        const hazardList = document.getElementById("hazard-list");
+        const sourceList = document.getElementById("source-list");
+
+        const planEmpty = document.getElementById("plan-empty");
+        const planContent = document.getElementById("plan-content");
+        const riskBadge = document.getElementById("risk-badge");
+        const decision = document.getElementById("decision");
+        const summary = document.getElementById("summary");
+        const actions = document.getElementById("actions");
+
+
+        function createElement(tag, className, text) {
+            const element = document.createElement(tag);
+
+            if (className) {
+                element.className = className;
+            }
+
+            if (text !== undefined && text !== null) {
+                element.textContent = String(text);
+            }
+
+            return element;
+        }
+
+
+        function hazardIcon(category) {
+            const text = String(category || "").toLowerCase();
+
+            if (text.includes("earthquake")) return "🌎";
+            if (text.includes("volcano")) return "🌋";
+            if (text.includes("wildfire")) return "🔥";
+            if (text.includes("flood")) return "🌊";
+            if (text.includes("rain")) return "🌧️";
+            if (text.includes("storm")) return "⛈️";
+            if (text.includes("wind")) return "💨";
+            if (text.includes("snow")) return "❄️";
+            if (text.includes("landslide")) return "🪨";
+
+            return "⚠️";
+        }
+
+
+        function formatNumber(value, suffix) {
+            const number = Number(value);
+
+            if (!Number.isFinite(number)) {
+                return "—";
+            }
+
+            return `${number.toFixed(1)}${suffix}`;
+        }
+
+
+        function renderWeather(weather) {
+            weatherGrid.replaceChildren();
+
+            const weatherItems = [
+                [
+                    "Temperature",
+                    formatNumber(weather.temperature_c, "°C")
+                ],
+                [
+                    "Current wind",
+                    formatNumber(weather.current_wind_kmh, " km/h")
+                ],
+                [
+                    "3-day precipitation",
+                    formatNumber(
+                        weather.maximum_3_day_precipitation_mm,
+                        " mm"
+                    )
+                ],
+                [
+                    "Maximum gust",
+                    formatNumber(
+                        weather.maximum_3_day_gust_kmh,
+                        " km/h"
+                    )
+                ]
+            ];
+
+            for (const [label, value] of weatherItems) {
+                const card = createElement("div", "weather-card");
+                card.appendChild(
+                    createElement("span", "weather-value", value)
+                );
+                card.appendChild(
+                    createElement("span", "weather-label", label)
+                );
+                weatherGrid.appendChild(card);
+            }
+        }
+
+
+        function renderHazards(hazards) {
+            hazardList.replaceChildren();
+
+            if (!hazards.length) {
+                const box = createElement("div", "no-hazard");
+                box.appendChild(
+                    createElement(
+                        "strong",
+                        "",
+                        "No major active disaster detected."
+                    )
+                );
+                box.appendChild(
+                    createElement(
+                        "p",
+                        "",
+                        "The connected feeds did not find a major nearby " +
+                        "event. This does not guarantee that conditions " +
+                        "are safe."
+                    )
+                );
+                hazardList.appendChild(box);
+                return;
+            }
+
+            for (const hazard of hazards.slice(0, 6)) {
+                const card = createElement("article", "hazard-card");
+
+                card.appendChild(
+                    createElement(
+                        "span",
+                        "hazard-category",
+                        hazard.category || hazard.type || "Hazard"
+                    )
+                );
+
+                const top = createElement("div", "hazard-top");
+
+                top.appendChild(
+                    createElement(
+                        "div",
+                        "hazard-title",
+                        `${hazardIcon(hazard.category)} ${hazard.title}`
+                    )
+                );
+
+                const distance = Number(hazard.distance_km);
+
+                top.appendChild(
+                    createElement(
+                        "div",
+                        "hazard-distance",
+                        Number.isFinite(distance)
+                            ? `${distance.toFixed(1)} km away`
+                            : "Nearby"
+                    )
+                );
+
+                card.appendChild(top);
+
+                card.appendChild(
+                    createElement(
+                        "p",
+                        "hazard-details",
+                        hazard.details || ""
+                    )
+                );
+
+                card.appendChild(
+                    createElement(
+                        "span",
+                        "hazard-source",
+                        `Source: ${hazard.source || "Unknown"}`
+                    )
+                );
+
+                hazardList.appendChild(card);
+            }
+        }
+
+
+        function renderSources(sourceStatus) {
+            sourceList.replaceChildren();
+
+            for (const [source, status] of Object.entries(sourceStatus || {})) {
+                sourceList.appendChild(
+                    createElement(
+                        "span",
+                        "source-pill",
+                        `${source}: ${status}`
+                    )
+                );
+            }
+        }
+
+
+        function renderPlan(data) {
+            const level = data.assessment?.risk_level || "unknown";
+
+            riskBadge.className = `risk-badge risk-${level}`;
+            riskBadge.textContent = `Risk level: ${level.toUpperCase()}`;
+
+            decision.textContent = (
+                data.assessment?.recommended_decision
+                || "continue_with_awareness"
+            ).replaceAll("_", " ");
+
+            summary.textContent = data.assessment?.summary || "";
+
+            actions.replaceChildren();
+
+            for (const action of data.personalized_actions || []) {
+                actions.appendChild(createElement("li", "", action));
+            }
+        }
+
 
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
 
             submitButton.disabled = true;
-            submitButton.textContent = "Generating...";
+            submitButton.textContent = "Checking live feeds...";
+
+            hazardEmpty.classList.remove("hidden");
+            hazardEmpty.textContent =
+                "Checking Open-Meteo, USGS and NASA EONET...";
+            hazardContent.classList.add("hidden");
+
+            planEmpty.classList.remove("hidden");
+            planEmpty.textContent =
+                "Building the personalized action plan...";
+            planContent.classList.add("hidden");
 
             const formData = new FormData(form);
-            const params = new URLSearchParams();
-
-            params.set("location", formData.get("location"));
-            params.set("mobility", formData.get("mobility"));
-            params.set("transport", formData.get("transport"));
-            params.set("needs", formData.get("needs"));
+            const params = new URLSearchParams(formData);
 
             try {
                 const response = await fetch(`/plan?${params.toString()}`);
-
-                if (!response.ok) {
-                    throw new Error("The plan could not be generated.");
-                }
-
                 const data = await response.json();
 
-                placeholder.style.display = "none";
-                resultContent.style.display = "block";
-
-                const riskLevel =
-                    data.assessment?.risk_level ?? "unknown";
-
-                resultRisk.textContent =
-                    `Risk level: ${riskLevel.toUpperCase()}`;
-
-                resultDecision.textContent =
-                    data.assessment?.recommended_decision
-                    ?.replaceAll("_", " ")
-                    ?? "Continue with awareness";
-
-                resultSummary.textContent =
-                    data.assessment?.summary
-                    ?? "No summary was returned.";
-
-                resultActions.innerHTML = "";
-
-                for (const action of data.personalized_actions ?? []) {
-                    const item = document.createElement("li");
-                    item.textContent = action;
-                    resultActions.appendChild(item);
+                if (!response.ok) {
+                    throw new Error(
+                        data.detail || "The plan could not be generated."
+                    );
                 }
+
+                resolvedLocation.textContent =
+                    data.location?.name || formData.get("location");
+
+                generatedTime.textContent = data.generated_at
+                    ? `Updated ${new Date(
+                        data.generated_at
+                    ).toLocaleString()}`
+                    : "";
+
+                renderWeather(data.weather || {});
+                renderHazards(data.hazards || []);
+                renderSources(data.source_status || {});
+                renderPlan(data);
+
+                hazardEmpty.classList.add("hidden");
+                hazardContent.classList.remove("hidden");
+
+                planEmpty.classList.add("hidden");
+                planContent.classList.remove("hidden");
             } catch (error) {
-                placeholder.style.display = "grid";
-                placeholder.textContent = error.message;
-                resultContent.style.display = "none";
+                hazardEmpty.classList.remove("hidden");
+                hazardEmpty.textContent = error.message;
+                hazardContent.classList.add("hidden");
+
+                planEmpty.classList.remove("hidden");
+                planEmpty.textContent =
+                    "No personalized plan was generated.";
+                planContent.classList.add("hidden");
             } finally {
                 submitButton.disabled = false;
-                submitButton.textContent = "Generate safety plan";
+                submitButton.textContent = "Check live feeds";
             }
         });
     </script>
 </body>
 </html>
 """
+
 
 
 SKILL_PREVIEW_PAGE = """
@@ -2171,3 +2217,19 @@ async def create_plan(
             "Official emergency authorities always take priority.",
         ],
     }
+
+
+@app.get("/skill-preview", response_class=HTMLResponse)
+def skill_preview() -> str:
+    return SKILL_PREVIEW_PAGE
+
+
+@app.get("/skill.md", response_class=PlainTextResponse)
+def skill_markdown() -> str:
+    if not SKILL_FILE.exists():
+        return (
+            "# SafeRoute AI\n\n"
+            "The SKILL.md file could not be found."
+        )
+
+    return SKILL_FILE.read_text(encoding="utf-8")
